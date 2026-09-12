@@ -1,16 +1,16 @@
 import { notFound } from 'next/navigation';
 import MeetingDetail from '@/components/MeetingDetail';
 import type { SacramentMeeting } from '@/lib/types';
-import { headers } from 'next/headers';
+
+const getBaseUrl = () => {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return `http://localhost:3000`;
+}
 
 export default async function MeetingDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const headerStore = await headers();
-  const host = headerStore.get('host') || 'localhost:3000';
-  const protocol = host.includes('localhost') ? 'http' : 'https';
-  const baseUrl = `${protocol}://${host}`;
-
-  const { id } = await params;
-  const res = await fetch(`${baseUrl}/api/meetings/${id}`, { cache: 'no-store' });
+  // Next.js 15 requires us to 'await' the params here too
+  const resolvedParams = await params;
+  const res = await fetch(`${getBaseUrl()}/api/meetings/${resolvedParams.id}`, { cache: 'no-store' });
   
   if (!res.ok) {
     notFound();

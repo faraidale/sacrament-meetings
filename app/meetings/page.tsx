@@ -1,15 +1,13 @@
 import MeetingCard from '@/components/MeetingCard';
 import type { SacramentMeeting } from '@/lib/types';
-import { headers } from 'next/headers';
+
+const getBaseUrl = () => {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return `http://localhost:3000`;
+}
 
 export default async function MeetingsPage() {
-  // Dynamically grab the exact URL we are currently on
-  const headerStore = await headers();
-  const host = headerStore.get('host') || 'localhost:3000';
-  const protocol = host.includes('localhost') ? 'http' : 'https';
-  const baseUrl = `${protocol}://${host}`;
-
-  const res = await fetch(`${baseUrl}/api/meetings`, { cache: 'no-store' });
+  const res = await fetch(`${getBaseUrl()}/api/meetings`, { cache: 'no-store' });
   const meetings: SacramentMeeting[] = await res.json();
 
   return (
