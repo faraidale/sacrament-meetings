@@ -103,3 +103,13 @@ export function getMeetings(date?: string | null): SacramentMeeting[] {
 export function getMeetingById(id: number): SacramentMeeting | null {
     return meetings.find(m => m.id === id) ?? null;
 }
+
+export function getCurrentMeeting(today = new Date()): SacramentMeeting | null {
+    const todayIso = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, '0'),
+        String(today.getDate()).padStart(2, '0')
+    ].join('-');
+
+    return meetings.find(meeting => meeting.date >= todayIso) ?? null;
+}
