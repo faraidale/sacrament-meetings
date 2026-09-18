@@ -22,8 +22,8 @@ export function MeetingSearch() {
     }, 300);
 
     return (
-        <label className="mb-12 block max-w-2xl rounded-2xl border border-[#800000]/10 bg-white/70 p-4 shadow-[0_12px_30px_rgba(95,0,0,0.06)] sm:p-5">
-            <span className="mb-3 block text-xs font-bold uppercase tracking-[0.18em] text-[#746963]">
+        <label className="mb-16 block w-full max-w-3xl rounded-3xl border border-[#800000]/15 bg-white p-6 shadow-[0_16px_36px_rgba(95,0,0,0.08)] sm:p-7">
+            <span className="mb-4 block text-sm font-bold uppercase tracking-[0.18em] text-[#800000]">
                 Find a meeting
             </span>
             <input
@@ -32,7 +32,7 @@ export function MeetingSearch() {
                 defaultValue={searchParams.get('query') ?? ''}
                 onChange={(event) => handleSearch(event.target.value)}
                 aria-label="Search meetings by speaker, leader, or meeting type"
-                className="h-14 w-full rounded-xl border border-[#800000]/20 bg-[#faf8f4] px-5 text-base text-[#2c2522] shadow-inner shadow-[#800000]/[0.03] outline-none transition placeholder:text-[#746963]/70 hover:border-[#800000]/40 focus:border-[#800000] focus:bg-white focus:ring-4 focus:ring-[#800000]/10"
+                className="h-16 w-full rounded-2xl border-2 border-[#800000]/20 bg-white px-6 text-lg text-[#2c2522] shadow-sm outline-none transition placeholder:font-medium placeholder:text-[#800000] hover:border-[#800000]/45 focus:border-[#800000] focus:ring-4 focus:ring-[#800000]/10"
             />
         </label>
     );
