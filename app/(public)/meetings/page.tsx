@@ -18,8 +18,10 @@ export default async function MeetingsPage(props: {
 
     return (
         <div className="w-full">
-            <h2 className="text-3xl font-serif text-[#800000] mb-8 border-b-2 border-[#800000]/20 pb-4">All Meetings</h2>
-            <MeetingSearch />
+            <div className="mb-10 flex flex-col gap-6 border-b-2 border-[#800000]/20 pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+                <h2 className="font-serif text-3xl text-[#800000]">All Meetings</h2>
+                <MeetingSearch />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {meetings.map((meeting) => (
                     <MeetingCard key={meeting.id} meeting={meeting} />
