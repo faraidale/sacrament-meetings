@@ -18,9 +18,11 @@ export default async function MeetingsPage(props: {
 
     return (
         <div className="w-full">
-            <div className="mb-10 flex flex-col gap-6 border-b-2 border-[#800000]/20 pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-                <h2 className="font-serif text-3xl text-[#800000]">All Meetings</h2>
-                <MeetingSearch />
+            <div className="mb-12 flex flex-row items-center justify-between gap-6 border-b-2 border-[#800000]/10 pb-6 max-[480px]:flex-col max-[480px]:items-stretch">
+                <h2 className="m-0 whitespace-nowrap font-serif text-4xl text-[#800000]">All Meetings</h2>
+                <div className="w-[min(32rem,60vw)] max-w-full shrink-0">
+                    <MeetingSearch />
+                </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {meetings.map((meeting) => (
