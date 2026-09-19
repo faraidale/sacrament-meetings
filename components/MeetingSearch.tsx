@@ -22,21 +22,24 @@ export function MeetingSearch() {
     }, 300);
 
     return (
-        <label className="relative block w-full max-w-md">
-            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-5 flex items-center text-[#800000]">
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="2.5">
-                    <circle cx="11" cy="11" r="6.5" />
-                    <path d="m16 16 4.5 4.5" strokeLinecap="round" />
-                </svg>
-            </span>
+        <div className="relative block w-full">
+            <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="pointer-events-none absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 fill-none stroke-[#800000]"
+                strokeWidth="2"
+            >
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4.5 4.5" strokeLinecap="round" />
+            </svg>
             <input
                 type="search"
-                placeholder="Search meetings..."
+                placeholder="Search by speaker, leader, or meeting type..."
                 defaultValue={searchParams.get('query') ?? ''}
                 onChange={(event) => handleSearch(event.target.value)}
                 aria-label="Search meetings by speaker, leader, or meeting type"
-                className="block h-14 w-full rounded-full border-[3px] border-[#800000] bg-white pl-14 pr-6 text-base text-[#2c2522] shadow-[0_3px_12px_rgba(95,0,0,0.14)] outline-none transition placeholder:font-medium placeholder:text-[#746963] hover:shadow-[0_5px_16px_rgba(95,0,0,0.2)] focus:ring-4 focus:ring-[#800000]/15 sm:h-16 sm:text-lg"
+                className="block h-16 w-full rounded-full border-2 border-[#800000]/30 bg-white pl-14 pr-6 text-lg text-[#2c2522] shadow-md outline-none transition placeholder:font-medium placeholder:text-[#746963] focus:border-[#800000] focus:ring-4 focus:ring-[#800000]/20"
             />
-        </label>
+        </div>
     );
 }
