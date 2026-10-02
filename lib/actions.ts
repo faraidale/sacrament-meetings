@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { auth } from '@/auth';
 import { z } from 'zod';
 import {
     addMeeting,
@@ -93,10 +94,16 @@ function validationState(result: z.ZodSafeParseError<z.infer<typeof MeetingFormS
     return { message: 'Please correct the highlighted fields.', errors };
 }
 
+async function requireBishopricSession() {
+    const session = await auth();
+    if (!session?.user) throw new Error('You must be signed in to manage meetings.');
+}
+
 export async function createMeeting(
     _previousState: FormState,
     formData: FormData,
 ): Promise<FormState> {
+    await requireBishopricSession();
     const result = MeetingFormSchema.safeParse(formDataToObject(formData));
     if (!result.success) return validationState(result);
 
@@ -116,6 +123,7 @@ export async function updateMeetingAction(
     _previousState: FormState,
     formData: FormData,
 ): Promise<FormState> {
+    await requireBishopricSession();
     const result = MeetingFormSchema.safeParse(formDataToObject(formData));
     if (!result.success) return validationState(result);
 
@@ -134,6 +142,7 @@ export async function updateMeetingAction(
 }
 
 export async function deleteMeetingAction(id: number): Promise<void> {
+    await requireBishopricSession();
     try {
         await deleteMeeting(id);
     } catch (error) {

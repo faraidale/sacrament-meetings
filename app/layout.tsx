@@ -7,8 +7,23 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Colne Valley Ward Planner",
-  description: "Sacrament meeting agenda planner for WDD 430",
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+  title: {
+    default: "Colne Valley Ward Planner",
+    template: "%s | Colne Valley Ward Planner",
+  },
+  description: "View and manage Colne Valley Ward sacrament meeting agendas and schedules.",
+  openGraph: {
+    type: "website",
+    siteName: "Colne Valley Ward Planner",
+    title: "Colne Valley Ward Planner",
+    description: "View and manage Colne Valley Ward sacrament meeting agendas and schedules.",
+    images: [{ url: "/sacrament.jpg", width: 800, height: 500, alt: "Sacrament meeting table" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/sacrament.jpg"],
+  },
 };
 
 export default function RootLayout({
